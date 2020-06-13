@@ -132,9 +132,7 @@ export const TimeGridScheduler = React.memo(function TimeGridScheduler({
       const [first, ...rest] = cellInfoToDateRanges(cell);
       invariant(
         rest.length === 0,
-        `Expected "cellInfoToSingleDateRange" to return a single date range, found ${
-          rest.length
-        } additional ranges instead. This is a bug in @remotelock/react-week-scheduler`,
+        `Expected "cellInfoToSingleDateRange" to return a single date range, found ${rest.length} additional ranges instead. This is a bug in @remotelock/react-week-scheduler`,
       );
 
       return first;
@@ -322,7 +320,7 @@ export const TimeGridScheduler = React.memo(function TimeGridScheduler({
     return createMapCellInfoToRecurringTimeRange({
       originDate,
       fromX: toDay,
-      fromY: y => y * visualGridVerticalPrecision,
+      fromY: (y) => y * visualGridVerticalPrecision,
     });
   }, [visualGridVerticalPrecision, originDate]);
 
@@ -388,7 +386,7 @@ export const TimeGridScheduler = React.memo(function TimeGridScheduler({
   );
 
   const handleBlur: React.FocusEventHandler = useCallback(
-    event => {
+    (event) => {
       if (!event.target.contains(document.activeElement)) {
         setActive([null, null]);
       }
@@ -448,7 +446,7 @@ export const TimeGridScheduler = React.memo(function TimeGridScheduler({
           <div className={classes.calendar}>
             <div className={classes['day-column']}>
               <div className={classes['day-hours']}>
-                {times(numVisualVerticalCells).map(timeIndex => {
+                {times(numVisualVerticalCells).map((timeIndex) => {
                   return (
                     <Cell
                       classes={classes}
@@ -484,14 +482,14 @@ export const TimeGridScheduler = React.memo(function TimeGridScheduler({
             role="presentation"
             className={classcat([classes.calendar, classes.header])}
           >
-            {times(7).map(i => (
+            {times(7).map((i) => (
               <div
                 key={i}
                 role="presentation"
                 className={classes['day-column']}
               >
                 <div className={classcat([classes.cell, classes.title])}>
-                  {format(addDays(originDate, i), 'ddd', { locale })}
+                  {format(addDays(originDate, i), 'ddd dS', { locale })}
                 </div>
               </div>
             ))}
@@ -537,7 +535,7 @@ export const TimeGridScheduler = React.memo(function TimeGridScheduler({
           )}
 
           <div ref={parent} role="grid" className={classes.calendar}>
-            {times(7).map(dayIndex => {
+            {times(7).map((dayIndex) => {
               return (
                 <div
                   role="gridcell"
@@ -545,7 +543,7 @@ export const TimeGridScheduler = React.memo(function TimeGridScheduler({
                   className={classes['day-column']}
                 >
                   <div className={classes['day-hours']}>
-                    {times(numVisualVerticalCells).map(timeIndex => {
+                    {times(numVisualVerticalCells).map((timeIndex) => {
                       return (
                         <Cell
                           classes={classes}

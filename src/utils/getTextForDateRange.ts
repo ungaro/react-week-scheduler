@@ -10,7 +10,9 @@ const dropSame = (
   takeSecond: boolean = false,
   locale: typeof import('date-fns/locale/en'),
 ): [string, string] => {
-  const [first, second] = dates.map(date => format(date, template, { locale }));
+  const [first, second] = dates.map((date) =>
+    format(date, template, { locale }),
+  );
   if (first !== second) {
     return [first, second];
   }
@@ -53,7 +55,9 @@ export const getFormattedComponentsForDateRange = ({
 
   if (isSameDay(start, end) && !template) {
     const [firstM, secondM] = dropSame(dateRange, 'a', true, locale);
-    const day = includeDayIfSame ? `${format(start, 'ddd', { locale })} ` : '';
+    const day = includeDayIfSame
+      ? `${format(start, 'ddd dS', { locale })} `
+      : '';
     return [
       `${day}${formatHour(start, {
         locale,

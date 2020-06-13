@@ -56,7 +56,7 @@ const rangeStrings: [string, string][] = [
 ];
 
 const defaultSchedule: ScheduleType = rangeStrings.map(
-  range => range.map(dateString => new Date(dateString)) as [Date, Date],
+  (range) => range.map((dateString) => new Date(dateString)) as [Date, Date],
 );
 
 const EventRoot = React.forwardRef<any, EventRootProps>(function EventRoot(
@@ -100,7 +100,7 @@ function App() {
     () =>
       defaultSchedule
         .map(
-          range =>
+          (range) =>
             [
               setMinutes(
                 setHours(
@@ -206,7 +206,7 @@ function App() {
               setVerticalPrecision(Number(value))
             }
           >
-            {[5, 10, 15, 30, 60].map(value => (
+            {[5, 10, 15, 30, 60].map((value) => (
               <option key={value} value={value}>
                 {humanizeDuration(value * 60 * 1000)}
               </option>
@@ -219,7 +219,7 @@ function App() {
             type="checkbox"
             name="disabled"
             checked={disabled}
-            onChange={e => setDisabled(Boolean(e.target.checked))}
+            onChange={(e) => setDisabled(Boolean(e.target.checked))}
           />
           Disabled
         </label>
@@ -231,9 +231,9 @@ function App() {
             value={weekStart}
             onChange={({ target: { value } }) => setWeekStart(Number(value))}
           >
-            {[0, 1, 2, 3, 4, 5, 6].map(value => (
+            {[0, 1, 2, 3, 4, 5, 6].map((value) => (
               <option key={value} value={value}>
-                {format(setDay(new Date(), value), 'ddd', {
+                {format(setDay(new Date(), value), 'ddd dS', {
                   locale: locales[locale],
                 })}
               </option>
@@ -250,7 +250,7 @@ function App() {
               setVisualGridVerticalPrecision(Number(value))
             }
           >
-            {[15, 30, 60].map(value => (
+            {[15, 30, 60].map((value) => (
               <option key={value} value={value}>
                 {humanizeDuration(value * 60 * 1000)}
               </option>
@@ -267,7 +267,7 @@ function App() {
               setCellClickPrecision(Number(value))
             }
           >
-            {[15, 30, 60].map(value => (
+            {[15, 30, 60].map((value) => (
               <option key={value} value={value}>
                 {humanizeDuration(value * 60 * 1000)}
               </option>
@@ -284,7 +284,7 @@ function App() {
               setLocale(value);
             }}
           >
-            {['en', 'ar', 'ja', 'de'].map(value => (
+            {['en', 'ar', 'ja', 'de'].map((value) => (
               <option key={value} value={value}>
                 {value}
               </option>
@@ -318,8 +318,8 @@ function App() {
           />
         </label>
         <div>
-          Tip: use <Key>Delete</Key> key to remove time blocks. <Key>↑</Key> and{' '}
-          <Key>↓</Key> to move.
+          Tip: use <Key>Delete</Key> key to remove time blocks. <Key>↑</Key>{' '}
+          and <Key>↓</Key> to move.
         </div>
       </div>
       <CustomProperties
